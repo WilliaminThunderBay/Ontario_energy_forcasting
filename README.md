@@ -2,7 +2,9 @@
 
 ## Project Demo Video
 
-[![Watch the project demo on YouTube](https://img.youtube.com/vi/fHaWhkqskY0/maxresdefault.jpg)](https://www.youtube.com/watch?v=fHaWhkqskY0)
+<video src="./videoplayback.mp4" controls width="100%">
+  Your browser does not support the video tag.
+</video>
 
 > Click the image above to watch the project demo video on YouTube.
 
