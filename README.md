@@ -1,12 +1,10 @@
 # Ontario Energy Forecasting Dashboard
 
-## Project Demo Video
+## Video demonstration 📺
 
-<video src="./videoplayback.mp4" controls width="100%">
-  Your browser does not support the video tag.
-</video>
-
-[Open the local demo video](./videoplayback.mp4)
+| ▶️ Ontario Energy Forecasting Dashboard Demo |
+|:---:|
+| <video src="./videoplayback.mp4" controls preload="metadata" width="100%">videoplayback.mp4</video> |
 
 > Place `videoplayback.mp4` in the same folder as this `README.md` file.
 
