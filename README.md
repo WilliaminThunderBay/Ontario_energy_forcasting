@@ -2,11 +2,55 @@
 
 ## Video demonstration 📺
 
-| ▶️ Ontario Energy Forecasting Dashboard Demo |
-|:---:|
-| <video src="./videoplayback.mp4" controls preload="metadata" width="100%">videoplayback.mp4</video> |
+
+<table>
+<tr>
+<td align="center">▶️ <b>《Ontario Energy Forecasting Demo》</b></td>
+</tr>
+<tr>
+<td>
+<video src="./videoplayback.mp4" controls width="100%">
+  Your browser does not support the video tag.
+</video>
+</td>
+</tr>
+</table>
+
+[Open the local demo video](./videoplayback.mp4)
 
 > Place `videoplayback.mp4` in the same folder as this `README.md` file.
+
+<!--
+如果以后需要添加更多视频，可以按照下面的模板扩展：
+
+### 竖屏 9:16
+
+<table>
+<tr>
+<td align="center">▶️ <b>《视频标题1》</b></td>
+<td align="center">▶️ <b>《视频标题2》</b></td>
+<td align="center">▶️ <b>《视频标题3》</b></td>
+</tr>
+<tr>
+<td><video src="./demo-portrait-1.mp4" controls width="100%"></video></td>
+<td><video src="./demo-portrait-2.mp4" controls width="100%"></video></td>
+<td><video src="./demo-portrait-3.mp4" controls width="100%"></video></td>
+</tr>
+</table>
+
+### 横屏 16:9
+
+<table>
+<tr>
+<td align="center">▶️ <b>《视频标题1》</b></td>
+<td align="center">▶️ <b>《视频标题2》</b></td>
+</tr>
+<tr>
+<td><video src="./demo-landscape-1.mp4" controls width="100%"></video></td>
+<td><video src="./demo-landscape-2.mp4" controls width="100%"></video></td>
+</tr>
+</table>
+-->
 
 ---
 A data science project for forecasting **Ontario's hourly electricity demand and average electricity price** using historical energy records, climate data, and population trends.
