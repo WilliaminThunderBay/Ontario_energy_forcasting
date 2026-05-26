@@ -6,7 +6,9 @@
   Your browser does not support the video tag.
 </video>
 
-> Click the image above to watch the project demo video on YouTube.
+[Open the local demo video](./videoplayback.mp4)
+
+> Place `videoplayback.mp4` in the same folder as this `README.md` file.
 
 ---
 A data science project for forecasting **Ontario's hourly electricity demand and average electricity price** using historical energy records, climate data, and population trends.
@@ -217,6 +219,7 @@ ontario-energy-forecasting/
 ├── app.py
 ├── requirements.txt
 ├── README.md
+├── videoplayback.mp4
 ├── project_positioning.png
 ├── hourly_energy_demand.png
 ├── hourly_energy_price.png
