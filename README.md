@@ -1,5 +1,12 @@
 # Ontario Energy Forecasting Dashboard
 
+## Project Demo Video
+
+[![Watch the project demo on YouTube](https://img.youtube.com/vi/fHaWhkqskY0/maxresdefault.jpg)](https://www.youtube.com/watch?v=fHaWhkqskY0)
+
+> Click the image above to watch the project demo video on YouTube.
+
+---
 A data science project for forecasting **Ontario's hourly electricity demand and average electricity price** using historical energy records, climate data, and population trends.
 
 This repository demonstrates a complete forecasting workflow, including data collection, preprocessing, feature engineering, time-series validation, model comparison, and dashboard-style visualization.
