@@ -1,24 +1,22 @@
 # Ontario Energy Forecasting Dashboard
 
-A data science project for forecasting Ontario's hourly electricity demand and average energy price using historical energy records, climate data, and population trends.
+A data science project for forecasting **Ontario's hourly electricity demand and average electricity price** using historical energy records, climate data, and population trends.
+
+This repository demonstrates a complete forecasting workflow, including data collection, preprocessing, feature engineering, time-series validation, model comparison, and dashboard-style visualization.
+
+---
 
 ## Project Overview
 
-This project builds a forecasting pipeline for Ontario's energy system by combining three types of data:
+Ontario's electricity demand is affected by several real-world factors, such as seasonal weather changes, extreme temperature events, and long-term population growth. Traditional time-series models can capture historical patterns, but they often struggle to use external variables such as temperature, humidity, and demographic trends.
 
-- **Electricity demand and price data** from 2003 to 2023
-- **Hourly weather data** from 10 Ontario weather stations
-- **Quarterly population data** for Ontario
-
-The goal is to improve energy demand and price prediction by using external factors such as temperature, humidity, seasonal patterns, and population growth. Several forecasting models were compared, including ARIMA, SARIMA, Random Forest, XGBoost, and LightGBM.
-
-## Project Workflow
+This project addresses that problem by combining multiple data sources and comparing classical forecasting models with machine learning models.
 
 ```mermaid
 flowchart LR
     A[Energy Demand & Price Data] --> D[Data Preprocessing]
-    B[Weather Data] --> D
-    C[Population Data] --> D
+    B[Weather Data from 10 Ontario Stations] --> D
+    C[Ontario Population Data] --> D
     D --> E[Feature Engineering]
     E --> F[Time-Series Validation]
     F --> G[Model Training]
@@ -26,41 +24,135 @@ flowchart LR
     G --> I[Random Forest]
     G --> J[XGBoost]
     G --> K[LightGBM]
-    J --> L[Best Model: XGBoost]
+    J --> L[Best Overall Model]
     L --> M[Forecast Visualization Dashboard]
 ```
 
-## Key Features
+---
 
-- Cleaned and merged large-scale time-series datasets from multiple sources
-- Handled missing values using forward fill, backward fill, and interpolation
-- Engineered time-based and lag features to capture seasonal demand patterns
-- Compared traditional time-series models with machine learning models
-- Used chronological train-test splitting and rolling time-series cross-validation
-- Built visualizations for demand trends, price changes, seasonal effects, and model performance
-- Developed a dashboard-style interface for presenting forecasting results
+## Project Positioning
+
+The project focuses on an Ontario-specific forecasting task and uses highly relevant external features, including weather and population data.
+
+![Project positioning map](./project_positioning.png)
+
+---
 
 ## Dataset
 
-| Data Type | Description | Time Range |
+| Data Source | Description | Time Range |
 |---|---|---|
-| Energy Demand & Price | Hourly Ontario electricity demand and average price | 2003-2023 |
-| Weather Data | Temperature, humidity, wind speed, wind chill, and other climate variables from 10 stations | 2003-2023 |
-| Population Data | Quarterly Ontario population estimates | 2003-2023 |
+| Energy demand and price | Hourly Ontario electricity demand and market price | 2003-2023 |
+| Weather data | Hourly climate variables from 10 Ontario weather stations | 2003-2023 |
+| Population data | Quarterly Ontario population estimates | 2003-2023 |
 
-## Models Used
+Key variables include:
 
-| Model | Purpose |
-|---|---|
-| ARIMA | Traditional univariate time-series forecasting |
-| SARIMA | Seasonal time-series forecasting |
-| Random Forest | Machine learning regression model |
-| XGBoost | Gradient boosting model for demand and price forecasting |
-| LightGBM | Efficient gradient boosting model for large datasets |
+- Hourly energy demand
+- Hourly average electricity price
+- Temperature
+- Humidity
+- Wind speed
+- Wind chill
+- Population estimates
+- Date and time features
+- Lag-based demand features
 
-## Results Summary
+---
 
-XGBoost achieved the best overall performance in this project. Machine learning models performed better than traditional ARIMA-based methods because they could use external features such as weather and population data.
+## Exploratory Data Analysis
+
+The historical demand curve shows strong seasonality and repeated long-term patterns.
+
+![Hourly energy demand](./hourly_energy_demand.png)
+
+Electricity prices also show clear spikes during some periods, especially around high-demand conditions.
+
+![Hourly energy price](./hourly_energy_price.png)
+
+Seasonal analysis shows that winter demand is generally high, likely because of heating needs.
+
+![Seasonal energy demand](./seasonal_energy_demand.png)
+
+Extreme weather conditions are important because both very cold and very hot periods can increase electricity usage.
+
+![Extreme weather demand](./extreme_weather_demand.png)
+
+Population growth is another long-term factor that influences electricity consumption.
+
+![Ontario population trend](./population_trend.png)
+
+Monthly temperature patterns help explain seasonal changes in energy demand.
+
+![Average monthly temperature](./monthly_temperature.png)
+
+The variable distributions show the shape of demand, temperature, and population data used in the forecasting pipeline.
+
+![Variable distributions](./variable_distributions.png)
+
+---
+
+## Feature Engineering
+
+The model uses both raw and engineered features. Important engineered features include:
+
+- Hour of day
+- Day of week
+- Month
+- Year
+- Day of year
+- Lag demand from previous years
+- Moving and seasonal indicators
+- Weather-based variables
+- Population trend variables
+
+Mutual information analysis showed that hourly demand, population, wind chill, temperature, and time-based variables were useful for prediction.
+
+![Mutual information feature scores](./mutual_information_features.png)
+
+---
+
+## Modeling Strategy
+
+The data was split chronologically to avoid using future information during training.
+
+![Chronological train-test split](./chronological_train_test_split.png)
+
+A rolling time-series cross-validation strategy was used to evaluate model generalization across multiple future periods.
+
+![Time series cross validation](./time_series_cross_validation.png)
+
+The actual vs predicted plots show that the XGBoost model follows the overall demand pattern well across validation folds.
+
+![Actual vs predicted demand across folds](./actual_vs_predicted_folds.png)
+
+---
+
+## Models Compared
+
+| Model | Type | Main Purpose |
+|---|---|---|
+| ARIMA | Classical time-series model | Univariate demand forecasting |
+| SARIMA | Seasonal time-series model | Seasonal demand forecasting |
+| Random Forest | Machine learning model | Demand and price prediction |
+| XGBoost | Gradient boosting model | Main high-performance forecasting model |
+| LightGBM | Gradient boosting model | Efficient large-scale forecasting model |
+
+ARIMA and SARIMA were useful as traditional baselines, but they were less effective at handling external features.
+
+![ARIMA forecast](./arima_forecast.png)
+
+![SARIMA forecast](./sarima_forecast.png)
+
+Machine learning models were better at capturing complex relationships between demand, price, weather, and population.
+
+![Five-year model comparison](./five_year_model_comparison.png)
+
+---
+
+## Results
+
+XGBoost achieved the best overall accuracy among the compared models.
 
 | Model | Accuracy |
 |---|---:|
@@ -69,13 +161,26 @@ XGBoost achieved the best overall performance in this project. Machine learning 
 | Random Forest | 88.5% |
 | ARIMA | 74.2% |
 
+The radar chart compares classification-style metrics, including accuracy, precision, recall, and F1-score.
+
+![Classification metrics radar chart](./classification_metrics_radar.png)
+
+The error heatmaps compare log-transformed MSE, RMSE, and MAE for demand and price prediction.
+
+![Error metrics heatmap](./error_metrics_heatmap.png)
+
+---
+
 ## Main Findings
 
-- Energy demand in Ontario is strongly affected by seasonality and extreme weather.
-- Winter demand is generally higher because of heating needs.
-- Population growth contributes to long-term increases in electricity consumption.
-- Lag features from previous years help capture recurring seasonal demand patterns.
-- XGBoost provided the strongest balance between accuracy and robustness.
+- Energy demand in Ontario has strong seasonal patterns.
+- Weather conditions, especially temperature-related variables, are important for demand forecasting.
+- Population growth contributes to long-term demand changes.
+- Lag features help the model learn recurring annual patterns.
+- Machine learning models outperform traditional ARIMA-based models.
+- XGBoost provides the strongest overall performance in this project.
+
+---
 
 ## Tech Stack
 
@@ -88,20 +193,41 @@ XGBoost achieved the best overall performance in this project. Machine learning 
 - Statsmodels
 - Matplotlib
 - Seaborn
-- Streamlit
 - Selenium
+- Streamlit
+
+---
 
 ## Suggested Repository Structure
 
 ```text
 ontario-energy-forecasting/
-├── data/                  # Raw and processed datasets
-├── notebooks/             # EDA and model experiments
-├── src/                   # Data processing and modeling scripts
-├── app.py                 # Streamlit dashboard
-├── requirements.txt       # Python dependencies
-└── README.md              # Project documentation
+├── data/
+├── notebooks/
+├── src/
+├── app.py
+├── requirements.txt
+├── README.md
+├── project_positioning.png
+├── hourly_energy_demand.png
+├── hourly_energy_price.png
+├── seasonal_energy_demand.png
+├── extreme_weather_demand.png
+├── population_trend.png
+├── monthly_temperature.png
+├── variable_distributions.png
+├── mutual_information_features.png
+├── chronological_train_test_split.png
+├── time_series_cross_validation.png
+├── actual_vs_predicted_folds.png
+├── arima_forecast.png
+├── sarima_forecast.png
+├── five_year_model_comparison.png
+├── classification_metrics_radar.png
+└── error_metrics_heatmap.png
 ```
+
+---
 
 ## How to Run
 
@@ -110,26 +236,32 @@ ontario-energy-forecasting/
 git clone <your-repository-url>
 cd ontario-energy-forecasting
 
-# Create and activate a virtual environment
+# Create a virtual environment
 python -m venv .venv
-source .venv/bin/activate   # macOS/Linux
-# .venv\Scripts\activate    # Windows
+
+# Activate the virtual environment
+source .venv/bin/activate      # macOS/Linux
+# .venv\Scripts\activate       # Windows
 
 # Install dependencies
 pip install -r requirements.txt
 
-# Run the dashboard
+# Run the Streamlit dashboard
 streamlit run app.py
 ```
 
+---
+
 ## Future Improvements
 
-- Add real-time smart meter or IoT energy data
-- Extend the model to other Canadian provinces
+- Add real-time smart meter or IoT data
+- Extend the forecasting system to other Canadian provinces
 - Add carbon emission forecasting
 - Improve dashboard interactivity
-- Deploy the dashboard online for public access
+- Deploy the dashboard online for public use
+
+---
 
 ## Project Summary
 
-This project demonstrates how climate and population data can improve electricity demand forecasting. By combining multiple data sources and comparing different forecasting models, the system provides a practical approach for energy planning, grid management, and sustainable infrastructure development in Ontario.
+This project shows how climate and population data can improve electricity demand and price forecasting. By combining multiple data sources with machine learning models, the system provides a practical forecasting tool for energy planning, grid management, and sustainable infrastructure development in Ontario.
